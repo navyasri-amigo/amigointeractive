@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Linkedin, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Linkedin, Sparkles } from 'lucide-react';
 
 type TeamMember = {
   name: string;
@@ -11,16 +11,16 @@ type TeamMember = {
 };
 
 const teamMembers: TeamMember[] = [
-  { name: 'Manikanta Deshpande', role: '', image: '/pic1.jpg', linkedin: '' },
-  { name: 'Pranay Deshpande', role: '', image: '/pic2.jpg', linkedin: '' },
-  { name: 'Venkat Sai Deshpande', role: '', image: '/pic3.jpg', linkedin: '' },
+  { name: 'Venkat Sai Deshpande', role: 'Director', image: '/pic3.jpg', linkedin: '' },
   { name: 'Sai Sharath chandra', role: 'Email Deliverability & Account Manager', image: '/pic6.jpg', linkedin: '' },
-  { name: 'Sharmila Parchuri', role: 'Account Manager', image: '/pic8.jpg', linkedin: '' },
-  { name: 'Mohan Kumar Swamy', role: 'Campaign Manager', image: '/pic4.jpg', linkedin: '' },
+  { name: 'Sharmila Parchuri', role: 'Client growth & Patnerships Lead', image: '/pic8.jpg', linkedin: '' },
+  { name: 'Mohan Kumar Swamy', role: 'Digital Marketing Executive / Specialist', image: '/pic4.jpg', linkedin: '' },
   { name: 'Prem Kumar', role: 'Campaign Manager', image: '/pic10.jpg', linkedin: '' },
   { name: 'Praveen', role: 'Email Deliverability Specialist', image: '/pic1.jpg', linkedin: '' },
   { name: 'Prasad', role: 'Manager', image: '/pic2.jpg', linkedin: '' },
   { name: 'Navyasri', role: 'UI/UX Designer', image: '/pic9.jpg', linkedin: '' },
+  { name: 'Anvesh kumar', role: 'Campaign manager', image: '/pic1.jpg', linkedin: '' },
+  { name: 'Kiran kumar', role: 'Content Strategist / Creator', image: '/pic7.jpg', linkedin: '' },
 ];
 
 const cardVariants = {
@@ -30,14 +30,12 @@ const cardVariants = {
     rotate: direction > 0 ? 12 : -12,
     scale: 0.88,
   }),
-
   center: {
     opacity: 1,
     x: 0,
     rotate: 0,
     scale: 1,
   },
-
   exit: (direction: number) => ({
     opacity: 0,
     x: direction > 0 ? -100 : 100,
@@ -59,7 +57,6 @@ export function OurTeam() {
 
     const timer = window.setInterval(() => {
       setDirection(1);
-
       setActiveIndex((current) =>
         (current + 1) % teamMembers.length
       );
@@ -68,12 +65,20 @@ export function OurTeam() {
     return () => window.clearInterval(timer);
   }, [isPaused]);
 
-  // Numbered navigation
-  const goTo = (index: number) => {
-    if (index === activeIndex) return;
+  // Previous team member
+  const previous = () => {
+    setDirection(-1);
+    setActiveIndex((current) =>
+      (current - 1 + teamMembers.length) % teamMembers.length
+    );
+  };
 
-    setDirection(index > activeIndex ? 1 : -1);
-    setActiveIndex(index);
+  // Next team member - clockwise
+  const next = () => {
+    setDirection(1);
+    setActiveIndex((current) =>
+      (current + 1) % teamMembers.length
+    );
   };
 
   return (
@@ -83,7 +88,6 @@ export function OurTeam() {
     >
       {/* Decorative background */}
       <div className="pointer-events-none absolute -left-40 top-20 -z-10 h-96 w-96 rounded-full bg-blue-200/50 blur-[100px]" />
-
       <div className="pointer-events-none absolute -right-32 bottom-0 -z-10 h-96 w-96 rounded-full bg-purple-200/50 blur-[100px]" />
 
       <div className="mx-auto max-w-7xl">
@@ -159,24 +163,25 @@ export function OurTeam() {
               and better results.
             </p>
 
-            {/* Numbered team navigation */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              {teamMembers.map((member, index) => (
-                <button
-                  key={member.name}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  aria-label={`Show ${member.name}`}
-                  aria-current={activeIndex === index ? 'true' : undefined}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${
-                    activeIndex === index
-                      ? 'scale-110 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-200'
-                      : 'border border-slate-200 bg-white text-slate-600 hover:border-blue-500 hover:text-blue-600'
-                  }`}
-                >
-                  {index + 1}
-                </button>
-              ))}
+            {/* Arrow navigation only */}
+            <div className="mt-8 flex items-center gap-4">
+              <button
+                type="button"
+                onClick={previous}
+                aria-label="Previous team member"
+                className="flex h-14 w-14 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-sm transition-all duration-300 hover:-translate-x-1 hover:border-blue-500 hover:text-blue-600"
+              >
+                <ArrowLeft size={22} />
+              </button>
+
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next team member clockwise"
+                className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-indigo-200 transition-all duration-300 hover:translate-x-1 hover:scale-105"
+              >
+                <ArrowRight size={22} />
+              </button>
             </div>
           </motion.div>
 
@@ -300,7 +305,7 @@ export function OurTeam() {
                       </div>
                     </div>
 
-                    {/* Member number */}
+                    {/* Member label */}
                     <div className="absolute left-5 top-5 rounded-full border border-white/60 bg-white/80 px-4 py-2 text-xs font-bold text-indigo-800 shadow-sm backdrop-blur-md">
                       MEMBER {String(activeIndex + 1).padStart(2, '0')}
                     </div>
