@@ -15,41 +15,53 @@ import { EASE } from '../../utils/motion';
 
 export function Header() {
   const [active, setActive] = useState<MenuKey | null>(null);
-  const [heroVisible, setHeroVisible] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const location = useLocation();
 
+  const previousScrollY = useRef(0);
   const openTimer = useRef<number | undefined>(undefined);
   const closeTimer = useRef<number | undefined>(undefined);
 
-  // Show Header only while Hero is visible
+  // Show header when scrolling up and hide when scrolling down
   useEffect(() => {
-    const hero = document.querySelector('#hero');
+    previousScrollY.current = window.scrollY;
+    setHeaderVisible(true);
 
-    if (!hero) {
-      setHeroVisible(false);
-      return;
-    }
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const previousY = previousScrollY.current;
+      const scrollingUp = currentScrollY < previousY;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHeroVisible(entry.isIntersecting);
-      },
-      {
-        threshold: 0.1,
+      if (currentScrollY < 80) {
+        setHeaderVisible(true);
+      } else if (scrollingUp) {
+        setHeaderVisible(true);
+      } else if (currentScrollY > previousY) {
+        setHeaderVisible(false);
+        setActive(null);
+        setMobileOpen(false);
       }
-    );
 
-    observer.observe(hero);
+      previousScrollY.current = currentScrollY;
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [location.pathname]);
 
-  // Close menus on route change
+  // Reset navigation on route change
   useEffect(() => {
     setActive(null);
     setMobileOpen(false);
+    setHeaderVisible(true);
+    previousScrollY.current = window.scrollY;
   }, [location.pathname, location.hash]);
 
   // Escape key closes menus
@@ -96,7 +108,7 @@ export function Header() {
     <>
       {/* Mega Menu Backdrop */}
       <AnimatePresence>
-        {active && heroVisible && (
+        {active && headerVisible && (
           <motion.div
             key="mega-backdrop"
             aria-hidden
@@ -114,39 +126,36 @@ export function Header() {
       <motion.header
         initial={false}
         animate={{
-          opacity: heroVisible ? 1 : 0,
-          y: heroVisible ? 0 : -40,
+          opacity: headerVisible ? 1 : 0,
+          y: headerVisible ? 0 : -100,
         }}
         transition={{
-          duration: 0.35,
+          duration: 0.3,
           ease: EASE,
         }}
         style={{
-          pointerEvents: heroVisible ? 'auto' : 'none',
+          pointerEvents: headerVisible ? 'auto' : 'none',
         }}
         className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4"
         onMouseLeave={scheduleClose}
         onMouseEnter={() => window.clearTimeout(closeTimer.current)}
       >
-        {/* Transparent Navbar */}
+        {/* Navbar */}
         <div className="mx-auto max-w-site rounded-[20px] border border-transparent bg-transparent shadow-none backdrop-blur-0">
           <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:h-[70px]">
-    
 
-{/* Logo */}
-<Link
-  to="/"
-  aria-label="Amigo Interactive — home"
-  className="shrink-0"
->
-  <img
-    src="/Amigo.png"
-    alt="Amigo Interactive"
-    className="h-20 w-auto object-contain"
-  />
-</Link>
-
-
+            {/* Logo */}
+            <Link
+              to="/"
+              aria-label="Amigo Interactive — home"
+              className="shrink-0"
+            >
+              <img
+                src="/Amigo.png"
+                alt="Amigo Interactive"
+                className="h-14 w-auto object-contain"
+              />
+            </Link>
 
             {/* Desktop Navigation */}
             <nav
@@ -162,7 +171,9 @@ export function Header() {
                     type="button"
                     onMouseEnter={() => scheduleOpen(item.key)}
                     onClick={() =>
-                      setActive((a) => (a === item.key ? null : item.key))
+                      setActive((a) =>
+                        a === item.key ? null : item.key
+                      )
                     }
                     aria-expanded={isOpen}
                     aria-haspopup="true"
@@ -179,7 +190,9 @@ export function Header() {
                       />
                     )}
 
-                    <span className="relative">{item.label}</span>
+                    <span className="relative">
+                      {item.label}
+                    </span>
 
                     <motion.span
                       className="relative"
@@ -219,12 +232,12 @@ export function Header() {
         </div>
 
         {/* Desktop Mega Menu */}
-        {heroVisible && <MegaMenu active={active} />}
+        {headerVisible && <MegaMenu active={active} />}
       </motion.header>
 
       {/* Mobile Navigation */}
       <MobileMenu
-        open={mobileOpen && heroVisible}
+        open={mobileOpen && headerVisible}
         onClose={() => setMobileOpen(false)}
       />
     </>

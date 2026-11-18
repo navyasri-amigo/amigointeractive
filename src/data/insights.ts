@@ -49,17 +49,7 @@ export const articles: Article[] = [
   readTime: '4 min read',
   image: images.editorialTeam
 },
-{
-  id: 'a4',
-  section: 'insights',
-  category: 'iGaming',
-  tags: ['iGaming', 'Mobile Advertising'],
-  title: 'Player acquisition in iGaming starts with the right audience',
-  excerpt: 'Why tailored digital strategies matter from first impression to lasting player engagement.',
-  date: '2026-09-04',
-  readTime: '6 min read',
-  image: images.heroObject
-},
+
 {
   id: 'a5',
   section: 'research',
@@ -107,7 +97,6 @@ export const insightTopics = [
 'SEO',
 'Brand Strategy',
 'Content',
-'iGaming',
 'Mobile Advertising'];
 
 

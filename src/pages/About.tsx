@@ -47,7 +47,7 @@ export function About() {
             <RevealText className="display-md mt-6 text-ink" lines={['Unforgettable digital', 'experiences that', <span key="r" className="text-brand">resonate.</span>]} />
             <Reveal delay={0.15}>
               <p className="mt-8 text-lg leading-relaxed text-body">
-                Amigo Interactive partners with brands, advertisers and publishers to craft digital experiences that resonate with their audiences. We combine mobile advertising, affiliate partnerships, SEO, brand strategy, video and content into strategies tailored to each client’s goals.
+                Amigo Interactive partners with brands, advertisers and publishers to craft digital experiences that resonate with their audiences. We combine mobile advertising, SEO, brand strategy, video and content into strategies tailored to each client’s goals.
               </p>
               <p className="mt-5 text-lg leading-relaxed text-body">
                 From iGaming platforms looking to grow their player base to brands seeking a distinctive identity, our work is grounded in data and driven by creativity.

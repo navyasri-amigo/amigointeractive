@@ -23,7 +23,6 @@ export const serviceCategories: ServiceCategory[] = [
     items: [
       { title: 'Digital Marketing', to: '/services/online-advertising' },
       { title: 'Performance Marketing', to: '/services/online-advertising' },
-      { title: 'Affiliate Marketing', to: '/services/affiliate-marketing' },
       { title: 'Content Marketing', to: '/services/content-marketing' },
       { title: 'SEO Optimization', to: '/services/seo-optimization' },
     ],

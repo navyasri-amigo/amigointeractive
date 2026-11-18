@@ -112,14 +112,14 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           </nav>
 
           <div className="shrink-0 space-y-3 border-t border-line bg-sky px-5 pb-8 pt-5">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {/* <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <ArrowButton to="/advertiser-signup" size="lg" className="w-full">
                 Advertiser Signup
               </ArrowButton>
               <ArrowButton to="/publisher-signup" size="lg" variant="secondary" className="w-full">
                 Publisher Signup
               </ArrowButton>
-            </div>
+            </div> */}
             <p className="flex items-center justify-center gap-2 pt-1 text-sm text-muted">
               <GlobeIcon aria-hidden className="h-4 w-4" /> Global | English
             </p>
