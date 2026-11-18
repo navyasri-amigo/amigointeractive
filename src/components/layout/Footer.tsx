@@ -90,7 +90,7 @@ export function Footer() {
       <li className="flex items-start gap-2 text-sm leading-6 text-body">
         <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
         <address className="not-italic">
-          <strong className="block text-ink">USA Office</strong>
+          <strong className="block text-ink">USA </strong>
           Amigo Interactive Inc.
           <br />
           16192 Coastal Highway,
@@ -105,7 +105,7 @@ export function Footer() {
       <li className="flex items-start gap-2 text-sm leading-6 text-body">
         <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
         <address className="not-italic">
-          <strong className="block text-ink">India Office</strong>
+          <strong className="block text-ink">India </strong>
           First Floor, Dwaraka Summit,
           <br />
           Plot no. 83, Kavuri Hills,
@@ -174,16 +174,22 @@ export function Footer() {
               Terms of Use
             </Link>
 
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-body transition-colors duration-200 hover:text-brand"
-            >
-              Back to Top
-              <ArrowUpRight
-                className="h-3.5 w-3.5"
-                aria-hidden="true"
-              />
-            </Link>
+            <button
+  type="button"
+  onClick={() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }}
+  className="inline-flex items-center gap-1 text-xs font-semibold text-body transition-colors duration-200 hover:text-brand"
+>
+  Back to Top
+  <ArrowUpRight
+    className="h-3.5 w-3.5"
+    aria-hidden="true"
+  />
+</button>
           </div>
         </div>
       </div>
