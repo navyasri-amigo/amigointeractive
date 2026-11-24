@@ -8,20 +8,22 @@ import { ArrowButton } from '../ui/ArrowButton';
 
 const positionDetails = [
   {
-    title: 'Email Marketing Designer',
-    category: 'Marketing & Creative',
+    title: 'Digital Marketing Specialist',
+    category: 'Marketing & Digital',
+    experience: '1–2 Years Experience',
     description:
-      'Design engaging email campaigns, promotional creatives, newsletters and responsive HTML email templates. Optimize layouts, typography, images and calls to action for a polished email experience.',
+      'Plan, execute and optimize digital marketing campaigns. Help increase brand awareness, drive audience engagement and support business growth through effective digital strategies.',
     skills:
-      'HTML5, inline CSS, responsive email design, visual design and email-client compatibility.',
+      'SEO, social media marketing, content marketing, Google Analytics, campaign management and digital marketing strategy.',
   },
   {
-    title: 'UI/UX Designer',
-    category: 'Design & Experience',
+    title: 'Media Buyer',
+    category: 'Paid Advertising & Media',
+    experience: '1–2 Years Experience',
     description:
-      'Create intuitive website and application interfaces, user flows, wireframes and prototypes. Turn requirements into accessible, user-friendly digital experiences with consistent visual design.',
+      'Plan, execute and optimize paid advertising campaigns across digital platforms. Manage advertising budgets, identify target audiences and improve campaign performance to maximize conversions and return on investment.',
     skills:
-      'Figma, wireframing, prototyping, responsive web design and UI/UX principles.',
+      'Google Ads, Meta Ads, paid advertising, media planning, audience targeting, budget management and campaign optimization.',
   },
 ];
 
@@ -47,7 +49,7 @@ export function CareersPanel() {
         </div>
       </div>
 
-      {/* Middle: Open Positions only */}
+      {/* Middle: Open Positions */}
       <div className="col-span-5 flex flex-col justify-center p-8">
         <div className="rounded-2xl border border-line p-7 transition-colors duration-200 hover:bg-sky">
           <div className="flex items-center justify-between gap-3">
@@ -65,7 +67,10 @@ export function CareersPanel() {
               aria-label="Toggle open positions"
               className="flex shrink-0 items-center gap-2 text-xs font-semibold text-brand"
             >
-              <span>{expanded ? 'Show Less' : 'View Roles'}</span>
+              <span>
+                {expanded ? 'Show Less' : 'View Roles (2)'}
+              </span>
+
               <ChevronDownIcon
                 className={`h-4 w-4 transition-transform ${
                   expanded ? 'rotate-180' : ''
@@ -96,7 +101,7 @@ export function CareersPanel() {
               transition={{ duration: 0.25, ease: 'easeInOut' }}
               className="overflow-hidden"
             >
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 max-h-[420px] space-y-3 overflow-y-auto pr-2">
                 {positionDetails.map((position) => (
                   <article
                     key={position.title}
@@ -110,6 +115,10 @@ export function CareersPanel() {
                       {position.title}
                     </h3>
 
+                    <p className="mt-2 text-xs font-bold text-brand">
+                      {position.experience}
+                    </p>
+
                     <p className="mt-2 text-sm leading-6 text-body">
                       {position.description}
                     </p>
@@ -117,6 +126,7 @@ export function CareersPanel() {
                     <p className="mt-3 text-xs font-semibold text-ink">
                       Relevant Skills
                     </p>
+
                     <p className="mt-1 text-sm leading-6 text-body">
                       {position.skills}
                     </p>
@@ -136,7 +146,7 @@ export function CareersPanel() {
         </AnimatePresence>
       </div>
 
-      {/* Right: Existing image */}
+      {/* Right: Existing Image */}
       <div className="col-span-3 flex flex-col p-5 pl-0">
         <div className="relative flex-1 overflow-hidden rounded-[20px] bg-sky">
           <img

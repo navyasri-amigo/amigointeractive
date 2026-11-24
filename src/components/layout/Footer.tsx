@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import {
   ArrowUpRight,
   Linkedin,
+  Instagram,
   Mail,
   MapPin,
 } from 'lucide-react';
+
 import { Logo } from '../Logo';
-import { footerNav } from '../../data/navigation';
 import { company } from '../../data/brand';
 
 export function Footer() {
@@ -29,37 +30,50 @@ export function Footer() {
               <Logo size="md" />
             </Link>
 
-
             <p className="mt-3 max-w-sm text-sm leading-6 text-body">
               Amigo Interactive brings together creativity, data, and
               technology to build meaningful digital experiences and help
               brands grow in a connected world.
             </p>
 
-            <a
-              href={company.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Connect with Amigo Interactive on LinkedIn"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors duration-200 hover:text-brand"
-            >
-              <Linkedin className="h-4 w-4" aria-hidden="true" />
-              Connect with us
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            {/* Social links */}
+            <div className="mt-5 flex flex-wrap items-center gap-5">
+              <a
+                href="https://www.linkedin.com/company/amigo-interactive-inc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect with Amigo Interactive on LinkedIn"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors duration-200 hover:text-brand"
+              >
+                <Linkedin className="h-4 w-4" aria-hidden="true" />
+                LinkedIn
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/amigointeractive?srtk=MWgyZXE0Y3dzazE4OQ%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Amigo Interactive on Instagram"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors duration-200 hover:text-brand"
+              >
+                <Instagram className="h-4 w-4" aria-hidden="true" />
+                Instagram
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
           {/* Explore links */}
-          
-<div className="lg:col-span-2">
-  <FooterColumn title="Explore">
-    <FooterLink to="/">Home</FooterLink>
-    <FooterLink to="/about">About Us</FooterLink>
-    <FooterLink to="/services">What We Do</FooterLink>
-    <FooterLink to="/news">News & Views</FooterLink>
-    <FooterLink to="/contact">Contact</FooterLink>
-  </FooterColumn>
-</div>
+          <div className="lg:col-span-2">
+            <FooterColumn title="Explore">
+              <FooterLink to="/">Home</FooterLink>
+              <FooterLink to="/about">About Us</FooterLink>
+              <FooterLink to="/services">What We Do</FooterLink>
+              <FooterLink to="/news">News & Views</FooterLink>
+              <FooterLink to="/contact">Contact</FooterLink>
+            </FooterColumn>
+          </div>
 
           {/* Contact section */}
           <div className="lg:col-span-2">
@@ -71,75 +85,80 @@ export function Footer() {
                   href={`mailto:${company.email}`}
                   className="inline-flex items-center gap-2 text-sm leading-6 text-body transition-colors duration-200 hover:text-brand"
                 >
-                  <Mail
-                    className="h-4 w-4 shrink-0"
-                    aria-hidden="true"
-                  />
+                  <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Email Us
                 </a>
               </li>
             </FooterColumn>
           </div>
 
-         {/* Office Locations */}
-<div className="lg:col-span-4">
-  <FooterColumn title="Office Location">
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {/* Office Locations */}
+          <div className="lg:col-span-4">
+            <FooterColumn title="Office Location">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
 
-      {/* USA Office */}
-      <li className="flex items-start gap-2 text-sm leading-6 text-body">
-        <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
-        <address className="not-italic">
-          <strong className="block text-ink">USA </strong>
-          Amigo Interactive Inc.
-          <br />
-          16192 Coastal Highway,
-          <br />
-          Lewes, Delaware 19958,
-          <br />
-          USA
-        </address>
-      </li>
+                {/* USA Office */}
+                <li className="flex items-start gap-2 text-sm leading-6 text-body">
+                  <MapPin
+                    className="mt-1 h-4 w-4 shrink-0 text-brand"
+                    aria-hidden="true"
+                  />
+                  <address className="not-italic">
+                    <strong className="block text-ink">USA</strong>
+                    Amigo Interactive Inc.
+                    <br />
+                    16192 Coastal Highway,
+                    <br />
+                    Lewes, Delaware 19958,
+                    <br />
+                    USA
+                  </address>
+                </li>
 
-      {/* India Office */}
-      <li className="flex items-start gap-2 text-sm leading-6 text-body">
-        <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
-        <address className="not-italic">
-          <strong className="block text-ink">India </strong>
-          First Floor, Dwaraka Summit,
-          <br />
-          Plot no. 83, Kavuri Hills,
-          <br />
-          Jubilee Hills, Hyderabad,
-          <br />
-          Telangana 500033
-        </address>
-      </li>
+                {/* India Office */}
+                <li className="flex items-start gap-2 text-sm leading-6 text-body">
+                  <MapPin
+                    className="mt-1 h-4 w-4 shrink-0 text-brand"
+                    aria-hidden="true"
+                  />
+                  <address className="not-italic">
+                    <strong className="block text-ink">India</strong>
+                    First Floor, Dwaraka Summit,
+                    <br />
+                    Plot no. 83, Kavuri Hills,
+                    <br />
+                    Jubilee Hills, Hyderabad,
+                    <br />
+                    Telangana 500033
+                  </address>
+                </li>
 
-    </div>
+              </div>
 
-    {/* Google Maps Links */}
-    <div className="mt-4 flex flex-wrap gap-4">
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=16192+Coastal+Highway+Lewes+Delaware+19958+USA"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-xs font-semibold text-brand hover:text-ink"
-      >
-        USA Maps <ArrowUpRight className="h-3.5 w-3.5" />
-      </a>
+              {/* Google Maps Links */}
+              <div className="mt-4 flex flex-wrap gap-4">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=16192+Coastal+Highway+Lewes+Delaware+19958+USA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-brand hover:text-ink"
+                >
+                  USA Maps
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
 
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=First+Floor+Dwaraka+Summit+Plot+83+Kavuri+Hills+Hyderabad+Telangana+500033"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-xs font-semibold text-brand hover:text-ink"
-      >
-        India Maps <ArrowUpRight className="h-3.5 w-3.5" />
-      </a>
-    </div>
-  </FooterColumn>
-</div>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=First+Floor+Dwaraka+Summit+Plot+83+Kavuri+Hills+Hyderabad+Telangana+500033"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-brand hover:text-ink"
+                >
+                  India Maps
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </FooterColumn>
+          </div>
         </div>
 
         {/* Bottom bar */}
@@ -158,7 +177,7 @@ export function Footer() {
             Performance
           </p>
 
-          {/* Legal links and back to top */}
+          {/* Legal links and Back to Top */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link
               to="/privacy-policy"
@@ -175,21 +194,21 @@ export function Footer() {
             </Link>
 
             <button
-  type="button"
-  onClick={() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }}
-  className="inline-flex items-center gap-1 text-xs font-semibold text-body transition-colors duration-200 hover:text-brand"
->
-  Back to Top
-  <ArrowUpRight
-    className="h-3.5 w-3.5"
-    aria-hidden="true"
-  />
-</button>
+              type="button"
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+                });
+              }}
+              className="inline-flex items-center gap-1 text-xs font-semibold text-body transition-colors duration-200 hover:text-brand"
+            >
+              Back to Top
+              <ArrowUpRight
+                className="h-3.5 w-3.5"
+                aria-hidden="true"
+              />
+            </button>
           </div>
         </div>
       </div>
